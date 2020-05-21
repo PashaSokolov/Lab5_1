@@ -1,3 +1,6 @@
+/**
+ * реализация команды show
+ */
 public class Show implements Command {
     @Override
     public void execute(MovieList movieList) {

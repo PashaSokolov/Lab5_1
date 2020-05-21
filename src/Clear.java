@@ -1,4 +1,7 @@
 import javax.swing.*;
+/**
+ * реализация команды clear
+ */
 
 public class Clear implements Command{
     @Override

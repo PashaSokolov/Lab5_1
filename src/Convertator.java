@@ -7,9 +7,7 @@ import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 /**
-
  * класс, конвертирующий файл в коллекцию
-
  */
 public class Convertator {
     private MovieList collection = new MovieList();
@@ -17,7 +15,7 @@ public class Convertator {
 
     /**
      * @param jsonPath путь до файла
-     * @return коллекцию объектов класса City
+     * @return коллекцию объектов класса Movie
      */
     public MovieList toCollection(String jsonPath) {
         File jsonFile = new File(jsonPath);
@@ -41,7 +39,7 @@ public class Convertator {
             System.out.println("This is not a json-file");
             System.exit(0);
         }
-
+        System.out.println("файл успешно обнаружен");
         NullPointerChecker np = new NullPointerChecker();
         WrongFieldChecker wf = new WrongFieldChecker();
         int counter = 0;
@@ -52,13 +50,12 @@ public class Convertator {
         }.getType();
 
         try {
-            InputStream is = new FileInputStream(jsonPath);
-            Reader isr = new InputStreamReader(is);
-            int line = isr.read();
-            while ((Integer.valueOf(line) != null)) {
-                char chr = (char) line;
-                data = data + chr;
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(jsonPath), StandardCharsets.UTF_8));
+            String line;
+            while ((line = br.readLine()) != null) {
+                data = data + line;
             }
+
             MovieList newMovie = gson.fromJson(data.toString(), collectionType);
 
             for (Movie m : newMovie) {

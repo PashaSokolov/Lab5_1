@@ -1,3 +1,6 @@
+/**
+ * реализация команды info
+ */
 public class Info implements Command {
     @Override
     public void execute(MovieList movieList) {

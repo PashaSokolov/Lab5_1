@@ -5,7 +5,9 @@ import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * реализация команды execute_script
+ */
 public class ExecuteScript implements BigCommand {
     private Terminal fileTerminal;
     private ArrayList<String> executeList = new ArrayList<>();

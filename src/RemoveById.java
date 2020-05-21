@@ -1,4 +1,9 @@
 import java.time.LocalDateTime;
+import java.util.ConcurrentModificationException;
+
+/**
+ * реализация команды remove_by_id
+ */
 
 public class RemoveById implements BigCommand {
     @Override
@@ -24,6 +29,8 @@ public class RemoveById implements BigCommand {
             }
         }catch (NumberFormatException e){
             System.out.println("ID should be a number from 0 to " + Long.MAX_VALUE);
+        }catch (ConcurrentModificationException e){
+            System.out.println();
         }
     }
 }

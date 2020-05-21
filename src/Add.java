@@ -3,7 +3,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 import com.google.gson.reflect.TypeToken;
-
+/**
+ * реализация команды add
+ */
 public class Add implements BigCommand {
     private Gson gson = new Gson();
     private NullPointerChecker np = new NullPointerChecker();
@@ -18,6 +20,7 @@ public class Add implements BigCommand {
             wf.checkEverything(m);
             if(!movieList.contains(m)){
                 movieList.add(m);
+                System.out.println(movieList.indexOf(m));
             }
             if(prevSize != movieList.size()){
                 System.out.println("Element was successfully added to the collection.");

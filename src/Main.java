@@ -1,5 +1,7 @@
 import java.io.IOException;
-
+/**
+ * основной класс программы
+ */
 public class Main {
     public static void main(String[] args) throws IOException {
 
@@ -14,7 +16,7 @@ public class Main {
             }
         }catch (OutOfMemoryError e){
             System.out.println(
-                    "ЗАПУСКАЕМ░░\n" +
+                            "ЗАПУСКАЕМ░░\n" +
                             "░ГУСЯ░▄▀▀▀▄░ГИДРУ░░\n" +
                             "▄███▀░◐░▄▀▀▀▄░░░░░░\n" +
                             "░░▄███▀░◐░░░░▌░░░\n" +

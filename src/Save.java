@@ -1,6 +1,9 @@
 import com.google.gson.Gson;
 
 import java.io.*;
+/**
+ * реализация команды save
+ */
 
 public class Save implements Command {
     Gson gson = new Gson();
@@ -13,7 +16,7 @@ public class Save implements Command {
         String strCollection = new String();
 
         while(!path.endsWith("/")){
-            path = path.replace(".$","");
+            path = path.replaceAll(".$","");
         }
         path = path + "SavedCollection.json";
 

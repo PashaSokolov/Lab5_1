@@ -1,4 +1,7 @@
 public class FilterContains implements BigCommand
+        /**
+         * реализация команды filter_contains_name
+         */
 {
     @Override
     public void execute(MovieList movieList, String s) {

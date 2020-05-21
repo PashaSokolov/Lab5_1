@@ -111,11 +111,11 @@ public class Movie implements Comparable<Movie> {
 
         diff += String.valueOf(this.getMoviegenre()).compareTo(String.valueOf(movie.getMoviegenre()));
 
-        diff += String.valueOf(this.getMpaaRating()).compareTo(String.valueOf(movie.getMpaaRating()));
+        //diff += String.valueOf(this.getMpaaRating()).compareTo(String.valueOf(movie.getMpaaRating()));
 
         diff += Long.valueOf(this.getOscarcount()).compareTo(Long.valueOf(movie.getOscarcount()));
 
-        diff += Person.valueOf(this.getDirector()).compareTo(Person.valueOf(movie.getDirector()));
+        //diff += Person.valueOf(this.getDirector()).compareTo(Person.valueOf(movie.getDirector()));
 
         diff += String.valueOf(this.getCreationDate()).compareTo(String.valueOf(movie.getCreationDate()));
 
@@ -123,7 +123,7 @@ public class Movie implements Comparable<Movie> {
 
 
 
-        return diff;
+       return diff;
     }
 /**
 

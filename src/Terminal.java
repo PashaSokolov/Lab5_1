@@ -18,23 +18,33 @@ public class Terminal {
     private AddIfMax addIfMax = new AddIfMax();
     private ExecuteScript executeScript = new ExecuteScript(this);
     private FilterContains filterContains = new FilterContains();
+    private PrintAscending printAscending = new PrintAscending();
+    private PrintDiscending printDiscending = new PrintDiscending();
+    private Remove_index remove_index = new Remove_index();
 
     public Terminal(MovieList col){
         this.col = col;
     }
     /**
      *осуществляет запуск интерактивного режима
+     * @throws IOException ;
      */
     public void start() throws IOException {
         System.out.println("Now you can start working. Type 'help' for a list of commands.");
+
         while (true){
-            newLine = in.readLine().trim();
-            String[] arr = newLine.split(" ",2);
-            if(arr.length == 1){
-                commandManager(arr[0], null);
-            }else{
-                commandManager(arr[0],arr[1]);
+            try{
+                newLine = in.readLine().trim();
+                String[] arr = newLine.split(" ",2);
+                if(arr.length == 1){
+                    commandManager(arr[0], null);
+                }else{
+                    commandManager(arr[0],arr[1]);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
             }
+
         }
     }
     /**
@@ -72,8 +82,8 @@ public class Terminal {
                             "remove_first : удалить первый элемент из коллекции\n" +
                             "add_if_max {element} : добавить новый элемент в коллекцию, если его значение превышает значение наибольшего элемента этой коллекции\n" +
                             "filter_contains_name name : вывести элементы, значение поля name которых содержит заданную подстроку\n" +
-                            "print_field_ascending_mpaa_rating : вывести значения поля mpaaRating всех элементов в порядке возрастания\n" +
-                            "print_field_descending_mpaa_rating : вывести значения поля mpaaRating всех элементов в порядке убывания");
+                            "print_ascending : вывести значения поля mpaaRating всех элементов в порядке возрастания\n" +
+                            "print_discescending : вывести значения поля mpaaRating всех элементов в порядке убывания");
                     break;
                 case "info":
                     info.execute(col);
@@ -90,17 +100,23 @@ public class Terminal {
                 case "add":
                 case "add_if_max":
                 case "remove_first":
-                    System.out.println("Null json-object. Try another argument");
+                    removeFirst.execute(col);
                     break;
                 case "execute_script":
                     System.out.println("Null script name value. Try another argument");
+                    break;
                 case "remove_by_id":
                     System.out.println("ID should be a number from 0 to " + Long.MAX_VALUE);
                     break;
                 case "filter_contains_name":
                     System.out.println("Null name. Try another argument");
-                case "print_field_ascending_mpaa_rating":
-                case "print_field_discending_mpaa_rating":
+                    break;
+                case "print_ascending":
+                    printAscending.execute(col);
+                    break;
+                case "print_descending":
+                    printDiscending.execute(col);
+                    break;
                 default:
                     System.out.println("Unknown command, type 'help' for a list of commands");
                     break;
@@ -117,8 +133,8 @@ public class Terminal {
                 case "remove_by_id":
                     removeById.execute(col, arr2.trim());
                     break;
-                case "remove_first":
-                    removeFirst.execute(col, arr2.trim());
+                case "remove_at":
+                    remove_index.execute(col,arr2);
                     break;
                 case "filter_contains_name":
                     filterContains.execute(col, arr2.trim());

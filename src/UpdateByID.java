@@ -1,6 +1,9 @@
 import com.google.gson.Gson;
 
 import com.google.gson.JsonSyntaxException;
+/**
+ * реализация команды update_by_id
+ */
 
 public class UpdateByID implements BigCommand {
     private Gson gson = new Gson();
