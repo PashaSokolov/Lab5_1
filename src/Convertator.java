@@ -72,6 +72,9 @@ public class Convertator {
             e.printStackTrace();
             System.out.println("Error occurred while reading this file");
             System.exit(0);
+        }catch (NullPointerException e){
+            System.out.println("Null");
+            System.exit(0);
         }
 
         collection.setAuthDateTime(LocalDateTime.now());

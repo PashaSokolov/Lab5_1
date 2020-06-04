@@ -21,6 +21,8 @@ public class Remove_index implements BigCommand {
             }
         }catch (NumberFormatException e){
             System.out.println("ID should be a number from 0 to " + Long.MAX_VALUE);
+        }catch (IndexOutOfBoundsException e){
+            System.out.println("Max ID is: " + (movieList.size() -1));
         }
     }
 }

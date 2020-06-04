@@ -1,8 +1,14 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.Date;
 
 import java.time.LocalDate;
 
 public class NullPointerChecker implements Checker {
+    private BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    private String newLine = new String();
+
     @Override
     public void checkEverything(Movie movie){
        if(movie.getName() == null){
@@ -28,15 +34,45 @@ public class NullPointerChecker implements Checker {
        }
 
        if(Long.valueOf(movie.getOscarcount() ) == null){
-           System.out.println("Looks like some of the fields contain null-values. They will be replaced automatically");
+           while(true){
+               System.out.println("\n" + "Переменная moviegenre - Null" + "\n"
+               + "Введите число от 0 до" + Integer.MAX_VALUE);
+               try {
+                   newLine = in.readLine();
+                   if(newLine == null) return;
+                   int newint = Integer.parseInt(newLine);
+                   if(newint >=0 && newint <= Integer.MAX_VALUE) movie.setOscarsCount(newint);
 
-           movie.setOscarsCount(1);
-       }
-       if (movie.getMoviegenre() == null){
-           System.out.println("Looks like some of the fields contain null-values. They will be replaced automatically");
+               } catch (Exception e) {
+                   e.printStackTrace();
+               }
 
-           movie.setMoviegenre(MovieGenre.ACTION);
+           }
+
+
        }
+           if(movie.getMoviegenre() == null ) {
+                while (true){
+                    System.out.println("\n" + "Переменная moviegenre - Null, либо не содержится в ENUM");
+                    System.out.println("Введите одну из переменных:" + "\n"
+                            + "ACTION" + "\n"
+                            + "DRAMA" + "\n"
+                            + "MUSICAL" + "\n"
+                            + "THRILLER" + "\n"
+                            + "FANTASY" + "\n");
+                    try {
+                        newLine = in.readLine();
+                        if(newLine == null) return;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    if (newLine.contains("ACTION") || newLine.contains("DRAMA") || newLine.contains("MUSICAL")
+                    || newLine.contains("THRILLER") || newLine.contains("FANTASY")){
+                        movie.setMoviegenre(MovieGenre.valueOf(newLine));
+                        break;
+                    }
+                }
+           }
 
     }
 }

@@ -13,6 +13,7 @@ public class Add implements BigCommand {
 
     @Override
     public void execute(MovieList movieList, String s) {
+        
         try{
             int prevSize = movieList.size();
             Movie m = gson.fromJson(s,Movie.class);

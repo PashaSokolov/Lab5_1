@@ -11,7 +11,7 @@ public class Save implements Command {
 
     @Override
     public void execute(MovieList movieList) {
-        FileOutputStream fos = null;
+        FileOutputStream FileOutput = null;
         String path = System.getenv("jsonEnv");
         String strCollection = new String();
 
@@ -26,14 +26,14 @@ public class Save implements Command {
             File file = new File(path);
             if(!file.exists()){
                 file.createNewFile();
-                fos = new FileOutputStream(file);
-                fos.write(strCollection.getBytes());
+                FileOutput = new FileOutputStream(file);
+                FileOutput.write(strCollection.getBytes());
                 System.out.println("Collection saved successfully");
             }else if(!file.canRead() || !file.canWrite()){
                 System.out.println("File is unreachable");
             }else{
-                fos = new FileOutputStream(file);
-                fos.write(strCollection.getBytes());
+                FileOutput = new FileOutputStream(file);
+                FileOutput.write(strCollection.getBytes());
                 System.out.println("Collection saved successfully");
             }
         }catch (IOException e){
@@ -44,8 +44,8 @@ public class Save implements Command {
             System.out.println("Impossible to create file in this directory");
         }finally {
             try{
-                if(fos != null){
-                    fos.close();
+                if(FileOutput != null){
+                    FileOutput.close();
                 }
             }catch (IOException e){
                 System.out.println("Error while closing");

@@ -111,11 +111,11 @@ public class Movie implements Comparable<Movie> {
 
         diff += String.valueOf(this.getMoviegenre()).compareTo(String.valueOf(movie.getMoviegenre()));
 
-        //diff += String.valueOf(this.getMpaaRating()).compareTo(String.valueOf(movie.getMpaaRating()));
+        diff += String.valueOf(this.getMpaaRating()).compareTo(String.valueOf(movie.getMpaaRating()));
 
         diff += Long.valueOf(this.getOscarcount()).compareTo(Long.valueOf(movie.getOscarcount()));
 
-        //diff += Person.valueOf(this.getDirector()).compareTo(Person.valueOf(movie.getDirector()));
+        diff += Person.valueOf(this.getDirector()).compareTo(Person.valueOf(movie.getDirector()));
 
         diff += String.valueOf(this.getCreationDate()).compareTo(String.valueOf(movie.getCreationDate()));
 
@@ -135,9 +135,11 @@ public class Movie implements Comparable<Movie> {
                 + "Movie name: " + this.getName() + "\n"
                 + "Coordinates: \n" + "\t x: " + this.getCoordinates().getX()
                 + "\n \t y: " + this.getCoordinates().getY() + "\n"
+                + "Oscars count" + this.getOscarcount() + "\n"
                 + "Movie genre: " + this.getMoviegenre() + "\n"
-                + "Mpaa Raiting: " + this.getMpaaRating() + "\n"
-                + "Director: " + Person.valueOf(this.getDirector());
+                + "Mpaa Raiting: " + this.mpaaRating + "\n"
+                + "Director: " + this.director + "\n"
+                + "Creation Date: "  + this.getCreationDate();
     }
 
 }

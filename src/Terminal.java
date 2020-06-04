@@ -21,6 +21,8 @@ public class Terminal {
     private PrintAscending printAscending = new PrintAscending();
     private PrintDiscending printDiscending = new PrintDiscending();
     private Remove_index remove_index = new Remove_index();
+    private int OpenBreaks = 0;
+    private int CloseBreaks = 0;
 
     public Terminal(MovieList col){
         this.col = col;
@@ -34,7 +36,16 @@ public class Terminal {
 
         while (true){
             try{
-                newLine = in.readLine().trim();
+                newLine = in.readLine();
+                if(newLine == null) break;
+                if(newLine.contains("{")){
+                    while(!newLine.contains("}")) {
+                        newLine += in.readLine();
+                        if(newLine == null) break;
+                    }
+                }
+
+                newLine = newLine.trim();
                 String[] arr = newLine.split(" ",2);
                 if(arr.length == 1){
                     commandManager(arr[0], null);
@@ -99,6 +110,8 @@ public class Terminal {
                     break;
                 case "add":
                 case "add_if_max":
+                    System.out.println("Null script name value. Try another argument");
+                    break;
                 case "remove_first":
                     removeFirst.execute(col);
                     break;
